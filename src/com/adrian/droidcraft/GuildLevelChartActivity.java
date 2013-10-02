@@ -92,24 +92,36 @@ public class GuildLevelChartActivity extends Activity {
 	 * Configures chart structure.
 	 */
 	private void initChart() {
-        mCurrentSeries = new XYSeries("Guild Level Chart");
+		//initial configuration
+        mCurrentSeries = new XYSeries("Loading serie...");
         mDataset.addSeries(mCurrentSeries);
         mCurrentRenderer = new XYSeriesRenderer();
         mRenderer.addSeriesRenderer(mCurrentRenderer);
+        
+        //visual customization
         mRenderer.setLabelsTextSize(18);
         mRenderer.setLegendTextSize(19);
+        mRenderer.setAxisTitleTextSize(18);
+        
         mRenderer.setXTitle("Level Range");
         mRenderer.setYTitle("Members");
-        mRenderer.setAxesColor(Color.BLACK);
+        
+        //item colors
         mRenderer.setApplyBackgroundColor(true);
+        mRenderer.setAxesColor(Color.BLACK);
+        mRenderer.setLabelsColor(Color.BLACK);
         mRenderer.setBackgroundColor(Color.WHITE);
         mRenderer.setMarginsColor(Color.WHITE);
-        mRenderer.setZoomEnabled(true);
-        mRenderer.setZoomButtonsVisible(true);
         mRenderer.setXLabelsColor(Color.BLACK);
         mRenderer.setYLabelsColor(0, Color.BLACK);
         mRenderer.setXLabels(0);
         
+        //additional features
+        mRenderer.setDisplayValues(true);
+        mRenderer.setZoomEnabled(true);
+        mRenderer.setZoomButtonsVisible(true);
+        
+        //labels for the serie
         mRenderer.addXTextLabel(1, "1-9");
         mRenderer.addXTextLabel(2, "10-19");
         mRenderer.addXTextLabel(3, "20-29");
@@ -130,6 +142,9 @@ public class GuildLevelChartActivity extends Activity {
         if(guild == null) {
         	return;
         }
+        
+        mCurrentSeries.setTitle(guild.getName() + " Guild Level Serie");
+        mRenderer.setChartTitle(guild.getName());
         
         int[] ranges = new int[10];
         
@@ -171,7 +186,7 @@ public class GuildLevelChartActivity extends Activity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.ch_guildlevel);
         if (mChart == null) {
             initChart();
-            addData();
+            addData();  
             mChart = ChartFactory.getBarChartView(this, mDataset, mRenderer, Type.DEFAULT);
             layout.addView(mChart);
         } else {
