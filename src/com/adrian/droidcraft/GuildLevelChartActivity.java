@@ -81,10 +81,10 @@ public class GuildLevelChartActivity extends Activity {
 			guild = gson.fromJson(json.toString(), Guild.class);
 			addData();
 			mChart.repaint();
-			aq.id(R.id.loadingPanel).visibility(View.GONE);
 		} else {
 			Toast.makeText(aq.getContext(), "Error: " + status.getMessage(), Toast.LENGTH_LONG).show();
 		}
+		aq.id(R.id.loadingPanel).visibility(View.GONE);
 	}
 	
 	/**

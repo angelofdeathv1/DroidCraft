@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void displayButtonClicked(View button) {
+		button.setEnabled(false);
 		realm = aq.id(R.id.et_realm).getText().toString();
 		guild = aq.id(R.id.et_guild).getText().toString();
 		
@@ -41,11 +42,12 @@ public class MainActivity extends Activity {
 		guild = guild.replace(" ", "%20");
 		
 		String url = "https://us.battle.net/api/wow/guild/" + realm + "/"+ guild;
-		System.out.println(url);
 		aq.ajax(url, JSONObject.class, this, "getRESTResponse");
 	}
 	
 	public void getRESTResponse(String url, JSONObject json, AjaxStatus status) {
+		aq.id(R.id.btn_display).getButton().setEnabled(true);
+		
 		if(json != null) {
 			if(json.has("status")) {
 				Toast.makeText(aq.getContext(), "Invalid Guild or Realm", Toast.LENGTH_LONG).show();
