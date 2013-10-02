@@ -54,9 +54,6 @@ public class GuildLevelChartActivity extends Activity {
 		realm = bundle.getString("realm");
 		guildName = bundle.getString("guild");
 
-		realm = realm.replace(" ", "%20");
-		guildName = guildName.replace(" ", "%20");
-
 		// TODO Escape this string values (realm and guild name)
 		String url = "http://us.battle.net/api/wow/guild/" + realm + "/"
 				+ guildName + "?fields=members";
@@ -102,6 +99,7 @@ public class GuildLevelChartActivity extends Activity {
         mRenderer.setLabelsTextSize(18);
         mRenderer.setLegendTextSize(19);
         mRenderer.setAxisTitleTextSize(18);
+        mRenderer.setBarSpacing(0.1);
         
         mRenderer.setXTitle("Level Range");
         mRenderer.setYTitle("Members");
