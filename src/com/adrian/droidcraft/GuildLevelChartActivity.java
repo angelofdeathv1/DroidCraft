@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -80,6 +81,7 @@ public class GuildLevelChartActivity extends Activity {
 			guild = gson.fromJson(json.toString(), Guild.class);
 			addData();
 			mChart.repaint();
+			aq.id(R.id.loadingPanel).visibility(View.GONE);
 		} else {
 			Toast.makeText(aq.getContext(), "Error: " + status.getMessage(), Toast.LENGTH_LONG).show();
 		}
