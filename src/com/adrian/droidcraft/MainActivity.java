@@ -2,17 +2,16 @@ package com.adrian.droidcraft;
 
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
 
-public class MainActivity extends Activity {
+public class MainActivity extends SherlockActivity {
 	private AQuery aq;
 	private String realm;
 	private String guild;
@@ -25,12 +24,12 @@ public class MainActivity extends Activity {
 		aq.id(R.id.btn_display).clicked(this, "displayButtonClicked");
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.main, menu);
+//		return true;
+//	}
 
 	public void displayButtonClicked(View button) {
 		button.setEnabled(false);
